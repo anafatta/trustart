@@ -3,7 +3,6 @@ package com.trustar.interview.questionFour.pattern.action;
 import com.google.common.collect.ImmutableList;
 import com.trustar.interview.questionFour.pattern.infraestructure.GithubConnection;
 import com.trustar.interview.questionThree.DetectPatternAttackThree;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,8 +49,18 @@ public class FindWordsTest {
     public void retrieve_matches_with_avoid_patterns() throws Exception {
         givenAFindWordAction();
         givenAFileToAnalyzed(FILE_PATH_WITH_SYMANTEC);
+        whenFindByPattern(of(compile("(http:\\/\\/|https:\\/\\/)")));
         whenFindByPatternWithAvoidPattern(of(compile("(http:\\/\\/|https:\\/\\/)")), Optional.of(of(compile("(symantec.com|cybereason.com)"))));
         thenMatchesFoundWithAllParameters();
+    }
+
+    @Test
+    public void retrieve_all_requested_matches() throws Exception {
+        givenAFindWordAction();
+        givenAFileToAnalyzed(FILE_PATH);
+        whenFindByPattern(of(compile("(http:\\/\\/|https:\\/\\/)"), compile("APT..")));
+        whenFindByPatternWithAvoidPattern(of(compile("APT.."), compile("(http:\\/\\/|https:\\/\\/)")), Optional.of(of(compile("(symantec.com|cybereason.com)"))));
+        thenMatchesFound();
     }
 
     private void givenAFindWordAction() {

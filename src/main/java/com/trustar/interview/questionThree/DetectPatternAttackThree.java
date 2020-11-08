@@ -32,7 +32,9 @@ public class DetectPatternAttackThree implements MatchFinder {
         Matcher match;
         for(Pattern pattern: patternList) {
             match = pattern.matcher(entry);
-            if(match.find()) return true;
+            if(match.find()){
+                return true;
+            }
         }
         return false;
     }
