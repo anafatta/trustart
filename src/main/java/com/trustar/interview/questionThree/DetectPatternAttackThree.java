@@ -2,6 +2,7 @@ package com.trustar.interview.questionThree;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
+import com.trustar.interview.questionFour.pattern.domain.MatchFinder;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class DetectPatternAttackThree {
+public class DetectPatternAttackThree implements MatchFinder {
 
     public List<String> findPatterns(ImmutableList<Pattern> patternList, String stringToAnalyzed, Optional<ImmutableList<Pattern>> patternToIgnore) {
         if(Strings.isNullOrEmpty(stringToAnalyzed) || patternList == null) return Collections.emptyList();

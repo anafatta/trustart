@@ -1,6 +1,6 @@
-package com.trustar.interview.questionFour.infraestructure;
+package com.trustar.interview.questionFour.pattern.infraestructure;
 
-import com.trustar.interview.questionFour.domain.RepositoryInstance;
+import com.trustar.interview.questionFour.pattern.domain.RepositoryInstance;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 
