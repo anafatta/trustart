@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.trustar.interview.questionFour.pattern.domain.URIUtils.FILE_PATH;
+import static com.trustar.interview.questionFour.pattern.domain.URIUtils.MITRE_CTI;
 
 public class RetrieveFileTest {
 
     private RetrieveFile retrieveFile;
     private RepositoryInstance repositoryInstance = new GithubConnection();
-    private static final String MITRE_CTI = "mitre/cti/";
-    private static final String FILE_PATH = "/enterprise-attack/intrusion-set/intrusion-set--899ce53f-13a0-479b-a0e4-67d46e241542.json";
     private String text;
 
     @Before
