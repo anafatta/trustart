@@ -27,7 +27,7 @@ public class DetectPatternAttackThree {
                         if(match.find()) return match.group();
                     }
                     return null;
-                }).filter(x -> x != null)
+                }).filter(x -> x != null) //TODO: Think how to avoid this filter.
                 .collect(Collectors.toList());
     }
 }
