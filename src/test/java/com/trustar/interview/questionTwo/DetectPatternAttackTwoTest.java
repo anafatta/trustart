@@ -1,6 +1,8 @@
-package com.trustar.interview.questionOne;
+package com.trustar.interview.questionTwo;
 
 import com.google.common.collect.ImmutableList;
+import com.trustar.interview.questionOne.DetectPatternAttackOne;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -8,12 +10,13 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class DetectPatternAttackTest {
+public class DetectPatternAttackTwoTest {
 
     private ImmutableList<Pattern> lisOfPattern;
     private String stringToAnalyzed;
-    private DetectPatternAttack detectPatternAttack;
+    private DetectPatternAttackTwo detectPatternAttackTwo;
     private List<String> findPattern;
 
     @Test
@@ -25,7 +28,7 @@ public class DetectPatternAttackTest {
     }
 
     @Test
-    public void words_matches(){
+    public void words_matches_question_one(){
         givenADetectPatternAttack();
         givenAListOfPattern();
         givenAStringToAnalyzed();
@@ -33,8 +36,17 @@ public class DetectPatternAttackTest {
         thenReturnPatternFound(Arrays.asList("the", "fox", "fence"));
     }
 
+    @Test
+    public void words_matches_question_two(){
+        givenADetectPatternAttack();
+        givenAListOfPattern();
+        givenAStringToAnalyzed();
+        whenAStringIsAnalyzed();
+        thenReturnPatternFound(Arrays.asList("the", "he", "fox"));
+    }
+
     private void givenAListOfPattern() {
-        lisOfPattern = ImmutableList.of(Pattern.compile("(the)"), Pattern.compile("fox|f.nce"));
+        lisOfPattern = ImmutableList.of(Pattern.compile("th."), Pattern.compile("he"), Pattern.compile("fox"));
     }
 
     private void givenAStringToAnalyzed() {
@@ -42,15 +54,16 @@ public class DetectPatternAttackTest {
     }
 
     private void givenADetectPatternAttack() {
-        detectPatternAttack = new DetectPatternAttack();
+        detectPatternAttackTwo = new DetectPatternAttackTwo();
     }
 
     private void whenAStringIsAnalyzed() {
-        findPattern = detectPatternAttack.findPatterns(lisOfPattern, stringToAnalyzed);
+        findPattern = detectPatternAttackTwo.findPatterns(lisOfPattern, stringToAnalyzed);
     }
 
     private void thenReturnPatternFound(List<String> expectedValue) {
-        assertEquals(expectedValue, findPattern);
+        assertTrue(findPattern.size() == expectedValue.size());
+        assertTrue(findPattern.containsAll(expectedValue));
     }
 
 }
