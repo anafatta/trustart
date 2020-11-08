@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static com.google.common.collect.ImmutableList.*;
+import static java.util.regex.Pattern.*;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -30,7 +32,7 @@ public class DetectPatternAttackTwoTest {
     @Test
     public void words_matches_question_one(){
         givenADetectPatternAttack();
-        givenAListOfPattern();
+        givenAListOfPattern(of(compile("(the)"), compile("fox|f.nce")));
         givenAStringToAnalyzed();
         whenAStringIsAnalyzed();
         thenReturnPatternFound(Arrays.asList("the", "fox", "fence"));
@@ -39,15 +41,16 @@ public class DetectPatternAttackTwoTest {
     @Test
     public void words_matches_question_two(){
         givenADetectPatternAttack();
-        givenAListOfPattern();
+        givenAListOfPattern(of(compile("th."), compile("he"), compile("fox")));
         givenAStringToAnalyzed();
         whenAStringIsAnalyzed();
         thenReturnPatternFound(Arrays.asList("the", "he", "fox"));
     }
 
-    private void givenAListOfPattern() {
-        lisOfPattern = ImmutableList.of(Pattern.compile("th."), Pattern.compile("he"), Pattern.compile("fox"));
+    private void givenAListOfPattern(ImmutableList<Pattern> patterns) {
+        lisOfPattern = patterns;
     }
+
 
     private void givenAStringToAnalyzed() {
         stringToAnalyzed = "The fox jumped over the fence";
