@@ -6,9 +6,11 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import static com.google.common.collect.ImmutableList.of;
+import static java.util.Optional.ofNullable;
 import static java.util.regex.Pattern.compile;
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +20,7 @@ public class DetectPatternAttackThreeTest {
     private String stringToAnalyzed;
     private DetectPatternAttackThree detectPatternAttackThree;
     private List<String> findPattern;
-    private Pattern patternToIgnore;
+    private ImmutableList<Pattern> patternToIgnore;
 
     @Test
     public void empty_matches(){
@@ -50,13 +52,13 @@ public class DetectPatternAttackThreeTest {
     public void words_matches_question_three(){
         givenADetectPatternAttack();
         givenAListOfPattern(of(compile("(the)"), compile("(fox|f.nce)"), compile("(abc)")));
-        givenAPatterToIgnore(compile("f.x"));
+        givenAPatterToIgnore(of(compile("f.x")));
         givenAStringToAnalyzed();
         whenAStringIsAnalyzed();
         thenReturnPatternFound(Arrays.asList("the", "fence"));
     }
 
-    private void givenAPatterToIgnore(Pattern aPatternToIgnore) {
+    private void givenAPatterToIgnore(ImmutableList<Pattern> aPatternToIgnore) {
         patternToIgnore = aPatternToIgnore;
     }
 
@@ -75,7 +77,7 @@ public class DetectPatternAttackThreeTest {
     }
 
     private void whenAStringIsAnalyzed() {
-        findPattern = detectPatternAttackThree.findPatterns(lisOfPattern, stringToAnalyzed, patternToIgnore);
+        findPattern = detectPatternAttackThree.findPatterns(lisOfPattern, stringToAnalyzed, ofNullable(patternToIgnore));
     }
 
     private void thenReturnPatternFound(List<String> expectedValue) {
