@@ -2,16 +2,15 @@ package com.trustar.interview.questionFour.pattern.action;
 
 import com.trustar.interview.questionFour.pattern.domain.RepositoryInstance;
 
-public class ConnectToRepository {
+public class RetrieveFile {
 
     private RepositoryInstance repositoryInstance;
 
-    public ConnectToRepository(RepositoryInstance aRepositoryInstance){
+    public RetrieveFile(RepositoryInstance aRepositoryInstance) {
         repositoryInstance = aRepositoryInstance;
     }
 
-    public void connect(String repository) throws Exception {
-        repositoryInstance.connect(repository);
+    public String invoke(String path) throws Exception {
+        return repositoryInstance.retrieveFile(path);
     }
-
 }

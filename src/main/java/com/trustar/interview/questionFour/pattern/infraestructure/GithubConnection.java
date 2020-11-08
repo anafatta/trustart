@@ -4,23 +4,28 @@ import com.trustar.interview.questionFour.pattern.domain.RepositoryInstance;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 
-import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
 
 public class GithubConnection implements RepositoryInstance {
 
     private GHRepository connection;
 
     @Override
-    public void connect(String repository) {
-        try {
-            GitHub github = GitHub.connectAnonymously();
-            connection = github.getRepository(repository);
-        } catch (IOException e) {
-            System.out.println("Can not connect to github repository: " + repository);
-        }
+    public void connect(String repository) throws Exception {
+        GitHub github = GitHub.connectAnonymously();
+        connection = github.getRepository(repository);
     }
 
-    public GHRepository connection(){
+    @Override
+    public String retrieveFile(String path) throws Exception {
+        return new BufferedReader(new InputStreamReader(connection().getFileContent(path).read(), StandardCharsets.UTF_8))
+                .lines().collect(Collectors.joining("\n"));
+    }
+
+    private GHRepository connection(){
         return connection;
     }
 

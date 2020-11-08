@@ -13,8 +13,7 @@ public class FindWords {
         repositoryInstance = aRepositoryInstance;
         matchFinder = aMatchFinder;
     }
-
-
+    
     public void findPattern() {
 
     }

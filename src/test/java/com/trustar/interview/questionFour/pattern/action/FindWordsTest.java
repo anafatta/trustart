@@ -5,6 +5,8 @@ import com.trustar.interview.questionThree.DetectPatternAttackThree;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class FindWordsTest {
 
     private FindWords findWords;
@@ -13,7 +15,7 @@ public class FindWordsTest {
     private DetectPatternAttackThree matchFinder = new DetectPatternAttackThree();
 
     @Before
-    public void init(){
+    public void init() throws Exception {
         repositoryInstance.connect(MITRE_CTI);
     }
 

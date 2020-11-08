@@ -2,8 +2,8 @@ package com.trustar.interview.questionFour.pattern.domain;
 
 public interface RepositoryInstance {
 
-    void connect(String repository);
+    void connect(String repository) throws Exception;
 
-    //void retrieveFile(String path);
+    String retrieveFile(String path) throws Exception;
 
 }
