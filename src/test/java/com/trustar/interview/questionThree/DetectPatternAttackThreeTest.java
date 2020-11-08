@@ -45,7 +45,7 @@ public class DetectPatternAttackThreeTest {
         givenAListOfPattern(of(compile("th."), compile("he"), compile("fox")));
         givenAStringToAnalyzed();
         whenAStringIsAnalyzed();
-        thenReturnPatternFound(Arrays.asList("the", "he", "fox"));
+        thenReturnPatternFound(Arrays.asList("the", "The", "fox"));
     }
 
     @Test

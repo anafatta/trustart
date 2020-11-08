@@ -20,17 +20,17 @@ public class DetectPatternAttackThree {
 
     private List<String> findWords(ImmutableList<Pattern> patternList, String stringToAnalyzed, Optional<ImmutableList<Pattern>> patternToIgnore) {
         return Arrays.stream(stringToAnalyzed.split("\\s+"))
-                .map(entry -> {
+                .filter(entry -> {
                     if(patternToIgnore.isPresent() && patternToIgnore.get().parallelStream().anyMatch(pattern -> pattern.matcher(entry).find())) {
-                        return null;
+                        return false;
                     }
                     Matcher match;
                     for(Pattern pattern: patternList) {
                         match = pattern.matcher(entry);
-                        if(match.find()) return match.group();
+                        if(match.find()) return true;
                     }
-                    return null;
-                }).filter(x -> x != null) //TODO: Think how to avoid this filter.
+                    return false;
+                })
                 .collect(Collectors.toList());
     }
 }
