@@ -34,7 +34,7 @@ public class DetectPatternAttackOneTest {
     }
 
     private void givenAListOfPattern() {
-        lisOfPattern = ImmutableList.of(Pattern.compile("(the)"), Pattern.compile("fox|f.nce"));
+        lisOfPattern = ImmutableList.of(Pattern.compile("(the)"), Pattern.compile("(fox|f.nce)"));
     }
 
     private void givenAStringToAnalyzed() {
