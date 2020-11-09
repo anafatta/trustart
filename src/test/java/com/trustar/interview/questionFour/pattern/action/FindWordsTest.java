@@ -85,14 +85,11 @@ public class FindWordsTest {
 
     private void thenMatchesFound() {
         assertTrue(listOfMatches.size() > 0);
-        System.out.println(listOfMatches);
     }
 
     private void thenMatchesFoundWithAllParameters() {
         assertTrue(listOfMatches.size() > 0);
         assertTrue(listOfMatchesWithAllParameters.size() > 0);
         assertTrue(listOfMatches.size() > listOfMatchesWithAllParameters.size());
-        System.out.println(listOfMatches);
-        System.out.println(listOfMatchesWithAllParameters);
     }
 }
